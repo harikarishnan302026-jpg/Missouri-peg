@@ -613,18 +613,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
                             /*
-                                Every card gets
-                                its own animation stage.
-
-                                Card 1 → first
-                                Card 2 → second
-                                Card 3 → third
-                                Card 4 → fourth
+                                Every card gets its own animation
+                                stage, spaced evenly based on how
+                                many cards actually exist (so this
+                                keeps working correctly if a card
+                                is ever added or removed).
                             */
+
+                            const cardStep =
+                                0.62 /
+                                cards.length;
 
                             const start =
                                 index *
-                                0.17;
+                                cardStep;
 
 
                             const end =
