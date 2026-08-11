@@ -276,6 +276,82 @@
 
 
         /* =========================================
+           BACKGROUND ANIMATION (behind content, above blue)
+        ========================================= */
+
+        .hero-bg-anim {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .hero-shape {
+            position: absolute;
+            display: block;
+            will-change: transform;
+        }
+
+        .hero-shape-ring {
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.726);
+        }
+
+        .hero-shape-square {
+            border: 1px solid rgba(255, 255, 255, 0.63);
+            transform: rotate(45deg);
+        }
+
+        .hero-shape-dot {
+            border-radius: 50%;
+            background: rgba(107, 243, 253, 0.438);
+        }
+
+        .hero-shape-line {
+            width: 1px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.18) 50%, rgba(255, 255, 255, 0) 100%);
+        }
+
+        .hero-shape-1 { width: 130px; height: 130px; left: 8%;  top: 14%; animation: heroFloatA 5S ease-in-out infinite; }
+        .hero-shape-2 { width: 80px;  height: 80px;  left: 22%; top: 62%; animation: heroFloatB 5s ease-in-out infinite; }
+        .hero-shape-3 { width: 46px;  height: 46px;  left: 33%; top: 20%; animation: heroFloatA 5s ease-in-out infinite; animation-delay: -6s; }
+        .hero-shape-4 { width: 26px;  height: 26px;  left: 14%; top: 78%; animation: heroFloatB 5s ease-in-out infinite; animation-delay: -3s; }
+        .hero-shape-5 { width: 8px;   height: 8px;   left: 30%; top: 42%; animation: heroFloatA 5s ease-in-out infinite; animation-delay: -8s; }
+        .hero-shape-6 { width: 6px;   height: 6px;   left: 6%;  top: 46%; animation: heroFloatB 5s ease-in-out infinite; animation-delay: -2s; }
+        .hero-shape-7 { height: 160px; left: 27%; top: 8%;  animation: heroFloatC 5s ease-in-out infinite; }
+        .hero-shape-8 { width: 190px; height: 190px; left: -4%; top: 55%; animation: heroFloatC 5s ease-in-out infinite; animation-delay: -10s; }
+
+        @keyframes heroFloatA {
+            0%, 100% { transform: translate(-1, 0) rotate(0deg); }
+            50%      { transform: translate(18px, -22px) rotate(8deg); }
+        }
+
+        @keyframes heroFloatB {
+            0%, 100% { transform: translate(-8, 0) rotate(45deg); }
+            50%      { transform: translate(-16px, 20px) rotate(52deg); }
+        }
+
+        @keyframes heroFloatC {
+            0%, 100% { transform: translate(-12px, 0); }
+            50%      { transform: translate(12px, 16px); }
+        }
+
+        @media (max-width: 767px) {
+            .hero-shape-1, .hero-shape-8 { width: 90px; height: 90px; }
+            .hero-shape-7 { height: 100px; }
+        }
+
+        @media (max-width: 480px) {
+            .hero-shape-3, .hero-shape-4, .hero-shape-7 { display: none; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .hero-shape { animation: none !important; }
+        }
+
+
+        /* =========================================
            CONTENT AREA
         ========================================= */
 
@@ -409,16 +485,17 @@
         }
 
         .hero-stat-number {
-            font-size: 31px;
+            font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: 35px;
             line-height: 1;
             font-weight: 800;
             margin-bottom: 7px;
         }
 
         .hero-stat-label img {
-            max-width: 170px;
-            width: 100%;
-            display: block;
+            width: 300px;
+            height:40px;
+            display: flex;
         }
 
         .hero-stat.microsoft-partner {
@@ -822,7 +899,7 @@
   .why-section{
     --reasons-accent: #5B5FC7;
     --reasons-accent-deep: #3B3E96;
-    background:white;
+    background:rgb(255, 255, 255);
     position:relative;
     overflow:hidden;
   }
@@ -835,8 +912,7 @@
     display:flex;
     align-items:center;
     gap:.75rem;
-    border-radius:20px; 
-    border:1px solid #ECEBF6;   
+   
   }
   .reasons-track{
     display:flex;
@@ -862,13 +938,11 @@
     display:flex;
     flex-direction:column;
   }
-  @media (min-width: 576px){
-    .reasons-slide{ flex-basis:calc(60% - .6rem); }
-  }
+  /* Single larger card — no partial next-card peek */
   .reasons-media{
     position:relative;
-    height:220px;
-    flex:0 0 220px;
+    height:300px;
+    flex:0 0 300px;
   }
   .reasons-media img{
     width:100%; height:100%;
@@ -884,7 +958,7 @@
   }
  
   .reasons-info{
-    padding:1.4rem 1.5rem 1.6rem;
+    padding:2rem 2.2rem 2.2rem;
     flex:1;
     display:flex;
     flex-direction:column;
@@ -894,17 +968,17 @@
     display:block;
     text-transform:uppercase;
     letter-spacing:.1em;
-    font-size:.72rem;
+    font-size:.8rem;
     font-weight:700;
     color:white;
-    margin-bottom:.4rem;
+    margin-bottom:.5rem;
   }
   .reasons-info h5{
     font-family:'Space Grotesk', var(--font-display), sans-serif;
     color:#f4f6f8;
-    font-size:1.1rem;
+    font-size:1.4rem;
     line-height:1.35;
-    margin-bottom:.85rem;
+    margin-bottom:1rem;
   }
   .reasons-link{
     display:inline-flex;
@@ -922,7 +996,7 @@
     flex:0 0 auto;
     width:44px; height:44px;
     border-radius:50%;
-    border:1px solid #DEE3EC;
+    border:2px solid #58a7f7;
     background:#fff;
     color:#142433;
     display:flex; align-items:center; justify-content:center;
@@ -930,9 +1004,8 @@
     transition:background .25s ease, color .25s ease, transform .25s ease;
   }
   .reasons-nav:hover{
-    background:var(--reasons-accent);
-    border-color:var(--reasons-accent);
-    color:#fff;
+    background:#58a7f7;
+    color:#f7f6f6;
     transform:scale(1.06);
   }
   .reasons-dots{
@@ -959,8 +1032,22 @@
     50%{ box-shadow:0 0 0 6px rgba(255,255,255,0); }
   }
   @media (max-width: 767px){
-    .reasons-media{ height:190px; }
-    .reasons-nav{ display:none; }
+    .reasons-carousel{ padding:0; border: 3px; gap:0; }
+    .reasons-media{ height:200px; }
+    .reasons-info{ padding:1.3rem 1.3rem 1.5rem; }
+    .reasons-info h5{ font-size:1.05rem; }
+    .reasons-nav{
+      position:absolute;
+      top:100px;
+      transform:translateY(-50%);
+      width:38px;
+      height:38px;
+      font-size:1rem;
+      z-index:5;
+      box-shadow:0 6px 16px -4px rgba(20,36,51,.35);
+    }
+    .reasons-prev{ left:6px; }
+    .reasons-next{ right:6px; }
   }
 
   /* serivs */
@@ -1210,11 +1297,12 @@
         .difference-scroll {
 
             /*
-                500vh gives enough scroll distance
-                for all four cards.
+                420vh gives enough scroll distance
+                for all three cards (reduced from 500vh
+                now that the section holds 3 cards instead of 4).
             */
 
-            height: 500vh;
+            height: 420vh;
 
             position: relative;
 
@@ -1328,15 +1416,16 @@
 
             width: 100%;
 
-            height: 630px;
+            height: 680px;
 
             display: flex;
 
-            gap: 3px;
+            gap: 22px;
 
             position: relative;
 
             align-items: stretch;
+            justify-content: center;
         }
 
 
@@ -1351,7 +1440,9 @@
 
             min-width: 0;
 
-            height: 510px;
+            max-width: 460px;
+
+            height: 580px;
 
             position: relative;
 
@@ -1404,7 +1495,7 @@
 
             width: 100%;
 
-            height: 320px;
+            height: 370px;
 
             position: relative;
 
@@ -1803,7 +1894,7 @@
 
             .difference-cards {
 
-                gap: 0px;
+                gap: 12px;
             }
 
 
@@ -1837,6 +1928,14 @@
 
         @media (max-width: 767px) {
 
+            /*
+                Scroll-jacked pin animation is disabled on mobile.
+                Cards stack vertically like normal content instead —
+                this avoids the long dead-scroll and cramped
+                horizontal squeeze that scroll-jacking causes on
+                small screens.
+            */
+
             .difference-scroll {
                 height: auto;
             }
@@ -1844,10 +1943,28 @@
             .difference-sticky {
                 position: relative;
                 top: auto;
+                align-items: flex-start;
+                padding-top: 55px;
+            }
+
+            .difference-container {
+                padding-left: 18px;
+                padding-right: 18px;
             }
 
             .difference-heading {
                 margin-top: 60px;
+                margin-bottom: 28px;
+            }
+
+            .difference-heading span {
+                font-size: 11px;
+                letter-spacing: 2px;
+            }
+
+            .difference-heading h2 {
+                font-size: 30px;
+                letter-spacing: -1px;
             }
 
             .difference-cards {
@@ -1858,6 +1975,7 @@
 
             .difference-card {
                 width: 100%;
+                max-width: 100%;
                 height: auto;
                 transform: none !important;
                 opacity: 1 !important;
@@ -1866,149 +1984,42 @@
             }
 
             .difference-image {
-                height: 220px;
+                height: 230px;
             }
-
-        }
-
-
-
-        /* =====================================================
-           MOBILE
-        ====================================================== */
-
-        @media (max-width: 767px) {
-
-            .difference-scroll {
-
-                height: 500vh;
-            }
-
-
-            .difference-sticky {
-
-                align-items:
-                    flex-start;
-
-                padding-top: 55px;
-            }
-
-
-            .difference-container {
-
-                padding-left: 15px;
-
-                padding-right: 15px;
-            }
-
-
-            .difference-heading {
-
-                margin-bottom: 28px;
-            }
-
-
-            .difference-heading span {
-
-                font-size: 10px;
-
-                letter-spacing: 2px;
-            }
-
-
-            .difference-heading h2 {
-
-                font-size: 29px;
-
-                letter-spacing: -1px;
-            }
-
-
-            /*
-                Keep all 4 cards in
-                ONE LINE on mobile too.
-            */
-
-            .difference-cards {
-
-                gap: 0px;
-
-                height: 590px;
-            }
-
-
-            .difference-card {
-
-                height: 375px;
-
-         
-            }
-
-
-            .difference-image {
-
-                height: 170px;
-            }
-
 
             .difference-content {
-
-                padding:
-                    14px
-                    11px
-                    15px;
+                padding: 18px 18px 22px;
             }
 
-
             .difference-content small {
-
-                font-size: 8px;
-
+                font-size: 11px;
                 letter-spacing: .8px;
             }
 
-
             .difference-content h3 {
-
-                font-size: 15px;
-
-                line-height: 1.12;
+                font-size: 19px;
+                line-height: 1.2;
             }
-
 
             .difference-content p {
-
-                font-size: 10px;
-
-                line-height: 1.4;
+                font-size: 14px;
+                line-height: 1.5;
             }
-
 
             .difference-icon {
-
-                width: 38px;
-
-                height: 38px;
-
-                right: 8px;
-
-                bottom: 8px;
-
-                font-size: 15px;
+                width: 42px;
+                height: 42px;
+                right: 10px;
+                bottom: 10px;
+                font-size: 17px;
             }
 
-
             .difference-number {
-
-                width: 31px;
-
-                height: 31px;
-
-                left: 8px;
-
-                bottom: 8px;
-
-                font-size: 10px;
+                width: 34px;
+                height: 34px;
+                left: 10px;
+                bottom: 10px;
+                font-size: 11px;
             }
 
         }
